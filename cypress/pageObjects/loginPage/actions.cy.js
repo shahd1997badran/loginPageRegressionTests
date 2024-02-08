@@ -27,8 +27,10 @@ class LoginPageActions{
         return this;
     }
     clickOnOrangeHRMURL(){
-        cy.get("[target=_blank]").last().click();
-        return this;
+        cy.get('a[href="http://www.orangehrm.com"]').invoke('removeAttr', 'target').click();
+        cy.origin('http://www.orangehrm.com',()=>{
+            cy.url().should("eql","http://www.orangehrm.com")
+        });
 
     }
     clickOnLinkedInURL(){
